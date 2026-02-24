@@ -1,12 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Platformer Multijoueur</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TEST - Platformer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="game" width="800" height="450"></canvas>
+
+<header>
+  <div class="title" id="titleContainer" aria-hidden="false"></div>
+  <div class="controls">
+    <button id="playBtn" aria-label="Jouer">Jouer</button>
+  </div>
+</header>
+
+<div id="gameWrap" role="application" aria-label="Jeu platformer">
+  <canvas id="gameCanvas" width="1000" height="560"></canvas>
+  <div class="hud" id="hud">Progression: 0%</div>
+</div>
+
+<!-- Modal "Bravo !" -->
+    <div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="modal" role="document">
+        <div class="closeX" id="closeModal" title="Fermer"></div>
+        <h2>Bravo !</h2>
+        <p>Tu as terminé le parcours. Félicitations.</p>
+      </div>
+    </div>
   <script src="script.js"></script>
 </body>
 </html>

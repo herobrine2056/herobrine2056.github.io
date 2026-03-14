@@ -1,35 +1,38 @@
   :root{
-    --ui-bg: #0b0b0b;
-    --accent: #1e90ff;
+    --bg:#0b0b0b;
+    --accent:#1e90ff;
     --modal-bg: rgba(0,0,0,0.6);
   }
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
-  body{background:var(--ui-bg);display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff;}
-  /* Header / Title */
-  header{width:100%;max-width:1000px;padding:30px 20px;box-sizing:border-box;text-align:center;}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:#fff;}
+  /* Center everything vertically and horizontally */
+  .page{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:20px;box-sizing:border-box;
+  }
+  .container{width:100%;max-width:1000px;text-align:center;}
+  /* Title */
+  .titleWrap{display:flex;align-items:center;justify-content:center;flex-direction:column;margin-bottom:12px;}
   .title{
-    font-weight:800;font-size:72px;letter-spacing:8px;display:inline-block;position:relative;height:110px;
-    user-select:none;
+    font-weight:800;font-size:72px;letter-spacing:8px;display:inline-block;position:relative;height:110px;user-select:none;
   }
-  .letter{
-    display:inline-block;position:relative;transform-origin:center;will-change:transform,top;
-  }
-  /* Play button */
-  .controls{margin-top:18px;}
-  button#playBtn{
-    background:linear-gradient(180deg,#ff7a18,#ff4b4b);border:0;padding:12px 22px;border-radius:10px;color:#fff;font-weight:700;
-    cursor:pointer;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.4);
-  }
-  /* Game container */
-  #gameWrap{display:none;margin-top:20px;width:100%;max-width:1000px;height:560px;border-radius:12px;overflow:hidden;position:relative;}
-  canvas#gameCanvas{display:block;width:100%;height:100%;background:#111;}
-  /* HUD */
+  .letter{display:inline-block;position:relative;transform-origin:center;will-change:transform,top;opacity:0;}
+  /* Controls */
+  .controls{margin-top:8px;}
+  button#playBtn{background:linear-gradient(180deg,#ff7a18,#ff4b4b);border:0;padding:12px 22px;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;font-size:18px;box-shadow:0 6px 18px rgba(0,0,0,0.4);}
+  /* Game area */
+  #gameWrap{display:none;margin:18px auto 0;width:100%;height:560px;border-radius:12px;overflow:hidden;position:relative;background:#0f1113;}
+  canvas#gameCanvas{display:block;width:100%;height:100%;background:transparent;touch-action:none;}
   .hud{position:absolute;left:12px;top:12px;color:#fff;font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,0.6);}
+  .hud.coins{position:absolute;right:12px;left:auto;top:12px;font-weight:700;}
   /* Modal */
   .modalOverlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:var(--modal-bg);z-index:50;}
   .modal{background:#0f1724;color:#fff;padding:22px;border-radius:12px;min-width:260px;max-width:90%;position:relative;box-shadow:0 10px 40px rgba(0,0,0,0.6);}
-  .modal h2{margin:0 0 8px 0;font-size:28px;}
   .closeX{position:absolute;right:10px;top:8px;width:34px;height:34px;border-radius:6px;background:#ff4b4b;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:800;}
   .closeX:after{content:"✕";color:#fff;font-size:16px;}
-  /* Small responsive */
-  @media (max-width:600px){ .title{font-size:44px;height:70px} button#playBtn{font-size:16px;padding:10px 16px} #gameWrap{height:420px} }
+  /* Touch controls (hidden until touch detected) */
+  #touchControls{position:fixed;inset:0;pointer-events:none;z-index:60;display:none;}
+  .joystickArea{position:absolute;left:18px;bottom:18px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,0.03);pointer-events:auto;display:flex;align-items:center;justify-content:center;}
+  .joystickBase{width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,0.06);position:relative;display:flex;align-items:center;justify-content:center;}
+  .joystickKnob{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.4);transform:translate(0,0);touch-action:none;}
+  .jumpButton{position:absolute;right:18px;bottom:28px;width:92px;height:92px;border-radius:18px;background:linear-gradient(180deg,#3aa0ff,#1e6fe0);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:20px;pointer-events:auto;box-shadow:0 8px 24px rgba(30,111,224,0.28);}
+  .jumpButton:active{transform:scale(0.98);}
+  @media (max-width:600px){ .title{font-size:44px;height:70px} button#playBtn{font-size:16px;padding:10px 16px} #gameWrap{height:420px} .joystickArea{width:140px;height:140px} .joystickBase{width:96px;height:96px} .joystickKnob{width:40px;height:40px} .jumpButton{width:80px;height:80px} }
